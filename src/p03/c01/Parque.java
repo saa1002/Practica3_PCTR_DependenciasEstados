@@ -32,7 +32,7 @@ public class Parque implements IParque{
 		// Imprimimos el estado del parque
 		imprimirInfo(puerta, "Entrada");
 		checkInvariante();
-		notify();
+		notifyAll();
 	}
 	
 	@Override
@@ -45,7 +45,7 @@ public class Parque implements IParque{
 		contadoresPersonasPuerta.put(puerta, contadoresPersonasPuerta.get(puerta) - 1);
 		imprimirInfo(puerta, "Salida");
 		checkInvariante();
-		notify();	
+		notifyAll();	
 		
 	}
 	
@@ -72,7 +72,7 @@ public class Parque implements IParque{
 	
 	protected void checkInvariante() {
 		assert sumarContadoresPuerta() == contadorPersonasTotales : "INV: La suma de contadores de las puertas debe ser igual al valor del contador del parte";
-		assert contadorPersonasTotales < 51 : "INV: El aforo maximo es de 50";
+		assert contadorPersonasTotales <= aforoMax : "INV: El aforo maximo es de 50";
 		assert contadorPersonasTotales >= 0 : "INV: El aforo minimo es de 0";
 	}
 
