@@ -6,14 +6,15 @@ import java.util.Hashtable;
 public class Parque implements IParque{
 
 
-	// TODO 
+	private int aforoMax;
 	private int contadorPersonasTotales;
 	private Hashtable<String, Integer> contadoresPersonasPuerta;
 	
 	
-	public Parque() {
+	public Parque(int aforoMax) {
 		contadorPersonasTotales = 0;
 		contadoresPersonasPuerta = new Hashtable<String, Integer>();
+		this.aforoMax = aforoMax;
 	}
 
 
