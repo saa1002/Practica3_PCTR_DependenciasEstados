@@ -25,7 +25,7 @@ public class Parque implements IParque{
 		if (contadoresPersonasPuerta.get(puerta) == null){
 			contadoresPersonasPuerta.put(puerta, 0);
 		}
-		this.comprobarAntesDeEntrar();
+		comprobarAntesDeEntrar();
 		// Aumentamos el contador total y el individual
 		contadorPersonasTotales++;		
 		contadoresPersonasPuerta.put(puerta, contadoresPersonasPuerta.get(puerta)+1);
@@ -79,10 +79,14 @@ public class Parque implements IParque{
 		
 	}
 
-	protected void comprobarAntesDeEntrar(){
-		//
-		// TODO
-		//
+	protected synchronized void comprobarAntesDeEntrar(){
+		while(contadorPersonasTotales == aforoMax){
+			try{
+				wait();
+			}catch(InterruptedException e){
+				System.out.println(e);
+			}
+		}
 	}
 
 	protected void comprobarAntesDeSalir(){
